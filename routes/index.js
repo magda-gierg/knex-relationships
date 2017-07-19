@@ -13,4 +13,19 @@ router.get('/', function (req, res) {
     })
 })
 
+router.get('/:id', function (req, res) {
+  db.getUser(req.params.id, req.app.get('connection'))
+    .then(function (userProfile) {
+      console.log({userProfile});
+      if (userProfile.length == 0) res.redirect('/')
+      else res.render('userProfile', userProfile)
+    })
+
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+
+
 module.exports = router

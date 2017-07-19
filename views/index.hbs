@@ -6,8 +6,9 @@
   <body>
     <ul>
     {{#each users}}
-      <li>{{name}} ({{email}})</li>
+      <li><a href="{{id}}">{{name}} ({{email}})</a></li>
     {{/each}}
     </ul>
+    <a href="/form">Add your profile here!</a>
   </body>
 </html>

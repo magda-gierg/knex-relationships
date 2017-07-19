@@ -13,18 +13,42 @@ router.get('/', function (req, res) {
     })
 })
 
+router.get('/edit', function(req, res) {
+  res.render('editForm')
+})
+
+  router.post('/edit', function(req, res) {
+  db.addUser(req.body, req.app.get('connection'))
+    .then(function(users) {
+      res.redirect('/')
+    })
+    .catch(function (err) {
+      res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+
+
+
+
+
 router.get('/:id', function (req, res) {
   db.getUser(req.params.id, req.app.get('connection'))
     .then(function (userProfile) {
       console.log({userProfile});
-      if (userProfile.length == 0) res.redirect('/')
-      else res.render('userProfile', userProfile)
+      // if (userProfile.length == 0) res.redirect('/')
+      // else
+      res.render('userProfile', userProfile)
     })
 
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
-})
+  })
+
+
+
+
 
 
 

@@ -3,6 +3,17 @@
     <img class="img-circle" src="{{image}}"  width="300px">
     <h1>{{name}}</h1>
       <h3>{{age}}</h3>
+      <a href="/post/{{id}}">Add your post here!</a></br>
+      <ul>
+      </br>
+      <p>My posts:</p>
+      {{#each posts}}
+        <li><h3>{{title}}</h3><p>{{content}}</p></li>
+      {{/each}}
+      </ul>
+</br>
+
+
 
       <a href="/">Home</a>
 

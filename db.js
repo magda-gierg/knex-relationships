@@ -2,7 +2,10 @@
 module.exports = {
   getUser: getUser,
   getUsers: getUsers,
-  addUser:addUser
+  addUser:addUser,
+  addPost: addPost,
+  getPost: getPost
+
 }
 
 function getUsers (connection) {
@@ -21,4 +24,12 @@ function addUser (body, connection) {
    var newUser= {name: body.name, email: body.email, profiles_id: profileId[0] }
    return connection('users').insert(newUser)
   })
+}
+
+function addPost (id, body, connection) {
+  var newPost= {user_id: id, title: body.title, content: body.content}
+  return connection('posts').insert(newPost)
+}
+function getPost (id, connection) {
+  return connection('posts').where('user_id', id)
 }
